@@ -1,0 +1,181 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+    body {
+        background-color: #f7f9fc; /* Soft background */
+        font-family: 'Arial', sans-serif; /* Keep original font */
+        overflow: auto; /* Allow scrolling */
+        position: relative; /* Enable positioning of background shapes */
+    }
+
+    .form-container {
+        background: white;
+        padding: 40px;
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden; /* Clip overflow for styling */
+        opacity: 0.95; /* Slight transparency for a softer effect */
+        z-index: 1; /* Ensure it appears above the shapes */
+        margin: 50px auto; /* Center the form container */
+    }
+
+    h3 {
+        color: #2c3e50; /* Darker color for the heading */
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #34495e; /* Darker label color */
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        padding: 15px;
+    }
+
+    .form-control:focus {
+        border-color: #3498db; /* Blue focus border */
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.25);
+    }
+
+    .btn-dark {
+        background-color: #3498db;
+        border: none;
+        border-radius: 10px; /* Rounded button */
+        color: white;
+        transition: background-color 0.3s;
+        padding: 10px 20px;
+    }
+
+    .btn-dark:hover {
+        background-color: #2980b9;
+    }
+
+    .microphone-btn {
+        background-color: #ffebee; /* Light red background */
+        border-radius: 10px; /* Rounded button without border */
+        padding: 10px;
+        transition: background-color 0.3s;
+        border: none; /* No border */
+    }
+
+    .microphone-btn:hover {
+        background-color: #ef5350; /* Darker red on hover */
+    }
+</style>
+
+<div class="background-shape shape1"></div>
+<div class="background-shape shape2"></div>
+<div class="background-shape shape3"></div>
+<div class="background-shape shape4"></div>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2 form-container">
+        <br>
+        <h3 style="color: black;">Create a New Doctor's Account</h3> 
+        <br>
+        <form method="post" action="/doctors" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Name</label>
+                <div class="d-flex">
+                    <input type="text" name="doctor[name]" placeholder="Enter Name" class="form-control" required>
+                    <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'name')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="valid-feedback">Don't forget to add 'Dr.'.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image<br><small>Upload Image in Landscape mode.</small></label>
+                <input type="file" name="doctor[image]" class="form-control" required>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="degree" class="form-label">Degree</label>
+                    <div class="d-flex">
+                        <input type="text" name="doctor[degree]" placeholder="Enter Degree" class="form-control" required>
+                        <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'degree')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="specialization" class="form-label">Specialization</label>
+                    <div class="d-flex">
+                        <input type="text" name="doctor[specialization]" placeholder="Enter Specialization" class="form-control" required>
+                        <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'specialization')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="valid-feedback">Great</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="clinicName" class="form-label">Clinic Name</label>
+                <div class="d-flex">
+                    <input type="text" name="doctor[clinicName]" placeholder="Enter Clinic Name" class="form-control">
+                    <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'clinicName')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="clinicCall" class="form-label">Clinic Call</label>
+                <div class="d-flex">
+                    <input type="text" name="doctor[clinicCall]" placeholder="Enter clinic calling number (with code)" class="form-control" required>
+                    <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'clinicCall')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Add phone number with calling codes.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="clinicAdd" class="form-label">Clinic Address</label>
+                <div class="d-flex">
+                    <input type="text" name="doctor[clinicAdd]" placeholder="Enter Clinic Address" class="form-control">
+                    <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'clinicAdd')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="yearsOfEx" class="form-label">Years of Experience</label>
+                    <div class="d-flex">
+                        <input type="number" name="doctor[yearsOfEx]" placeholder="Enter Years of Experience" class="form-control" required>
+                        <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'yearsOfEx')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="valid-feedback">Great</div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="consultingFees" class="form-label">Consulting Fees</label>
+                    <div class="d-flex">
+                        <input name="doctor[consultingFees]" placeholder="Enter Consulting Fees" class="form-control" required>
+                        <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('doctor', 'consultingFees')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Add Right Price.</div>
+                </div>
+            </div>
+
+            <button class="btn btn-dark add-btn mt-3">Add</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+<br>

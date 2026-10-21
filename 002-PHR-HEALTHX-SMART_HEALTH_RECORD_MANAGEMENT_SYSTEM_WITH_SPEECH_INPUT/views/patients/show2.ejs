@@ -1,0 +1,161 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <h3>Patients Details :- </h3>
+
+    <div class="card mb-3 show-card">
+        <div class="row">
+            <div class="col-md-4 col-6">
+                <img src="<%= patient.img.url %>" class="img-fluid rounded-start show-img" alt="patient_img" >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= patient.name %></h5>
+                    <!-- <p class="card-text">Owned By: <i><%=// patient.owner.username %></i>.</p> -->
+                    <p class="card-text"><strong>Date of Birth:</strong> <%= patient.dob %></p>
+                    <p class="card-text"><strong>Age:</strong> <%= patient.age %></p>
+                    <p class="card-text"><strong>Gender:</strong> <%= patient.gender %></p>
+                    <p class="card-text"><strong>Phone:</strong> <%= patient.phone %></p>
+                    <p class="card-text"><strong>Email:</strong> <%= patient.email %></p>
+                    <p class="card-text"><strong>Address:</strong> <%= patient.address %></p>
+                    <p class="card-text"><small class="text-body-secondary"><strong>Aadhar Card:</strong> <%= patient.adhar %></small></p>
+                    <!-- <li>Owned by :- <%=// patient.owner.username %></li> -->
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="cards_p">
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Emergency Contact</h4>
+                    <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6> -->
+                    <p class="card-text"><b>Name:</b> <%= patient.emName %></p>
+                    <p class="card-text"><b>Relation:</b> <%= patient.emRel %></p>
+                    <p class="card-text"><b>Contact Number:</b> <%= patient.emCall %></p>
+                </div>
+            </div>
+
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Medical Information</h4>
+                    <p class="card-text"><b>Blood Group:</b> <%= patient.bloodGr %></p>
+                    <p class="card-text"><b>Occupation:</b> <%= patient.occup %></p>
+                    <p class="card-text"><b>Nationality:</b> <%= patient.nation %></p>
+                    <p class="card-text"><b>Languages Known:</b> <%= patient.lang %></p>
+                    <p class="card-text"><b>Family Medical History:</b> <%= patient.famMedHis %></p>
+                    <p class="card-text"><b>Allergies:</b> <%= patient.allergy %></p>
+                    <p class="card-text"><b>Allergy Notes:</b> <%= patient.allergyNote %></p>
+                    <p class="card-text"><b>Chronic Diseases:</b> <%= patient.longDisease %></p>
+                </div>
+            </div>
+            
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Surgery Information</h4>
+                    <p class="card-text"><strong>Type of Surgery:</strong> <%= patient.surgeryTyp %></p>
+                    <p class="card-text"><strong>Date of Surgery:</strong> <%= patient.surgeryDate %></p>
+                    <p class="card-text"><strong>Surgeon:</strong> <%= patient.surgeon %></p>
+                    <p class="card-text"><strong>Surgery Notes:</strong> <%= patient.surgeryNote %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Appointment Details</h4>
+                    <p class="card-text"><strong>Reason for Appointment:</strong> <%= patient.reasonApp %></p>
+                    <p class="card-text"><strong>Appointment Duration:</strong> <%= patient.durationApp %></p>
+                    <p class="card-text"><strong>Appointment Date:</strong> <%= patient.dateApp %></p>
+                    <p class="card-text"><strong>Doctor:</strong> <%= patient.doctorApp %></p>
+                    <p class="card-text"><strong>Appointment Notes:</strong> <%= patient.noteApp %></p>
+                </div>
+            </div>
+            
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Vaccine Information</h4>
+                    <p class="card-text"><b>Vaccine Type:</b> <%= patient.vaccineTyp %></p>
+                    <p class="card-text"><b>Date:</b> <%= patient.vaccineDate %></p>
+                    <p class="card-text"><b>Doses:</b> <%= patient.vaccineDoses %></p>
+                    <p class="card-text"><b>Center:</b> <%= patient.vaccineCenter %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Current Medications</h4>
+                    <p class="card-text"><b>Medication:</b> <%= patient.medicineUsing %></p>
+                    <p class="card-text"><b>Dose:</b> <%= patient.medicineDose %></p>
+                    <p class="card-text"><b>Days:</b> <%= patient.medicineDays %></p>
+                    <p class="card-text"><b>Notes:</b> <%= patient.medicineNote %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Exercise, Sleep, and Diet</h4>
+                    <p class="card-text"><b>Exercise Routine:</b> <%= patient.exercise %></p>
+                    <p class="card-text"><b>Sleep Pattern:</b> <%= patient.sleep %></p>
+                    <p class="card-text"><b>Diet:</b> <%= patient.diet %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Past Medical History</h4>
+                    <p class="card-text"><b>Past Medications:</b> <%= patient.pastMedUsing %></p>
+                    <p class="card-text"><b>Reason for Past Medication:</b> <%= patient.pastMedReason %></p>
+                    <p class="card-text"><b>Dose:</b> <%= patient.pastMedDose %></p>
+                    <p class="card-text"><b>Days:</b> <%= patient.pastMedDays %></p>
+                    <p class="card-text"><b>Notes:</b> <%= patient.pastMedNote %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Health Metrics</h4>
+                    <p class="card-text"><b>BMI:</b> <%= patient.bmi %></p>
+                    <p class="card-text"><b>Blood Pressure:</b> <%= patient.bp %></p>
+                    <p class="card-text"><b>Heart Rate:</b> <%= patient.heartRate %></p>
+                    <p class="card-text"><b>Weight:</b> <%= patient.weight %></p>
+                    <p class="card-text"><b>Height:</b> <%= patient.height %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Insurance Information</h4>
+                    <p class="card-text"><b>Insurance Name:</b> <%= patient.insuranceName %></p>
+                    <p class="card-text"><b>Insurance Source:</b> <%= patient.insuranceSource %></p>
+                    <p class="card-text"><b>Insurance ID:</b> <%= patient.insuranceId %></p>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Lab Results</h4>
+                    <div class="lab-results">
+                        <p class="card-text"><%= patient.labResultImg1 %></p>
+                        <p class="card-text"><%= patient.labResultImg2 %></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-b" style="width: 33rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Additional Notes</h4>
+                    <p class="card-text"><%= patient.note %></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btns mt-3 mb-3">
+            <a href="/patients/<%= patient._id %>/edit" class="btn btn-dark col-1" type="button">Edit</a>
+    
+            <form method="post" action="/patients/<%= patient._id %>?_method=DELETE" class="d-inline">
+                <button class="btn btn-dark ms-3">Delete</button>
+            </form>
+        </div>
+</div>

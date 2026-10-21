@@ -1,0 +1,23 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    
+    <br><br>
+    <h3>First Aid for Emergency Medical Conditions</h3><br>
+    <form class="d-flex" action="/searchG" method="GET" style="margin-left: auto;">
+        <input class="form-control" type="search" name="searchQuery" placeholder="Search First Aid Info" aria-label="Search" style="border-radius: 25px; padding: 10px; width: 56rem;">
+        <button class="btn btn-primary d-flex align-items-center" type="submit"  
+            style="border-radius: 25px; padding: 10px 16px; transition: background-color 0.3s;">
+            <i class="bi bi-search me-2"></i> Search
+        </button>
+    </form>
+    <br>
+    <form method="get" action="/generals/new3" class="form-inline my-2 my-lg-0">
+        <button class="btn btn-dark">Create New First Aid Information</button>
+    </form>
+    <br>
+    <ul class="list-group" aria-current="true">
+        <% for ( let general of allGenerals ) { %>
+            <li class="list-group-item"><a href="/generals/<%= general._id %>" class="listing-link"><%= general.info %></a></li>
+        <% } %>
+    </ul> <br><br>
+</body>

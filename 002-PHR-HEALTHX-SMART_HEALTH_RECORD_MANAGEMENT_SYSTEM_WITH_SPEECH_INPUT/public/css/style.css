@@ -1,0 +1,177 @@
+/* *{
+    color: white !important;
+    background-color: black !important;
+}
+
+.nav-link, .nav-item{
+    color: white !important;
+} */
+
+body {
+    font-family: "Space Grotesk", serif !important;
+    font-optical-sizing: auto;
+    font-size:large !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+/* Navbar  */
+.navbar {
+    color: red !important;
+    height: 5rem;
+    background-color: white ;
+    font-size: 1.2rem;
+    margin-left: 0.7rem;
+}
+
+.collapse {
+    background-color: white !important;
+}
+
+.material-symbols-outlined{
+    font-size: 2rem !important;
+    color: red;
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.nav-link:hover {
+    color: red !important;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: black;
+    justify-content: space-evenly !important;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+    color: red;
+}
+
+.f-info-links,
+.f-info-socials, .f-info-brands {
+    width: 100%;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.f-info-socials i{
+    font-size: 1.5rem;
+    margin-right: 2rem ;
+}
+
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly !important;
+    margin-bottom: 1rem;
+}
+
+.f-info-brands{
+    margin-top: 1.2rem !important;
+}
+
+footer{
+    margin-top: auto;
+}
+
+/* Cards */
+.card {
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400;
+}
+
+.listing-link{/*Common for 3.*/
+    text-decoration: none;
+    color: black;
+}
+
+/* Card Effect*/
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.3;
+    background-color: white;
+}
+
+/* General Listing */
+.list-group-item {
+    padding: 1.5rem !important;
+    font-size: large;
+}
+
+/* Add Button*/
+.add-btn{
+    background-color: red !important;
+    border: none !important;
+}
+
+/* Navbar - toogle button*/
+.toggle-btn{
+    border: none !important;
+    background-color: none !important;
+}
+
+/* Show page  */
+.show-img {
+    height: 30vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* show2.ejs */
+.cards_p{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-b{
+    border: aqua 1px solid !important;
+    padding: 2rem;
+    margin: 2rem;
+}
+
+/* Review  */
+.review-card{
+    border: 1px solid black;
+}

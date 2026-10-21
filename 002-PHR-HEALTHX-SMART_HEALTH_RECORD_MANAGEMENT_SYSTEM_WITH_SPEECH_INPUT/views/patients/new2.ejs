@@ -1,0 +1,704 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+    body {
+        background-color: #f7f9fc; /* Soft background */
+        font-family: 'Arial', sans-serif; /* Keep original font */
+    }
+
+    .form-container {
+        background: white;
+        padding: 40px;
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden; /* Clip overflow for styling */
+    }
+
+    h3 {
+        color: #2c3e50; /* Darker color for the heading */
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #34495e; /* Darker label color */
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        padding: 15px;
+    }
+
+    .form-control:focus {
+        border-color: #3498db; /* Blue focus border */
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.25);
+    }
+
+    .btn-dark {
+        background-color: #3498db;
+        border: none;
+        border-radius: 10px; /* Rounded button */
+        color: white;
+        transition: background-color 0.3s;
+        padding: 10px 20px;
+    }
+
+    .btn-dark:hover {
+        background-color: #2980b9;
+    }
+
+    .microphone-btn {
+        background-color: #ffebee; /* Light red background */
+        border-radius: 10px; /* Rounded button without border */
+        padding: 10px;
+        transition: background-color 0.3s;
+        border: none; /* No border */
+    }
+
+    .microphone-btn:hover {
+        background-color: #ef5350; /* Darker red on hover */
+    }
+
+    /* Optional Decorative Elements */
+    .decorative-ellipse {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: rgba(52, 152, 219, 0.1); /* Soft blue */
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .decorative-ellipse-small {
+        position: absolute;
+        bottom: -50px;
+        left: -50px;
+        width: 100px;
+        height: 100px;
+        background: rgba(46, 204, 113, 0.1); /* Soft green */
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    /* Crazy background shapes */
+    .background-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.2;
+        z-index: 0;
+        pointer-events: none; /* Prevent interaction with shapes */
+    }
+
+</style>
+
+
+
+<br /><br />
+<div class="row">
+    <div class="col-8 offset-2 form-container">
+        <div class="decorative-ellipse"></div>
+        <div class="decorative-ellipse-small"></div>
+        <br>
+        <h3 style="color: black;">Create a New Patient's Account</h3>
+        <br />
+        <form method="post" action="/patients"  novalidate class="needs-validation" enctype="multipart/form-data">
+            <br />
+            <h4 style="color: red;">Basic Information</h4>
+            <br />
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <div class="d-flex">
+                    <input type="text" id="name" name="patient[name]" placeholder="Enter Name" class="form-control"required />
+                    <button type="button" class="ms-2 btn btn-light  microphone-btn" onclick="startVoiceInput('patient', 'name')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- <div class="mb-3">
+                <label for="img" class="form-label">Image URL/Link</label>
+                <input type="text" id="img" name="patient[img]" placeholder="Enter Image URL/Link"
+                    class="form-control" />
+            </div> -->
+            <div class="mb-3">
+                <label for="img" class="form-label">Upload Image<br> <small>Upload Image in Landscape mode.</small>
+                </label>
+                <input type="file" id="img" name="patient[img]"class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label for="adhar" class="form-label">Aadhar Number</label>
+                <div class="d-flex">
+                    <input type="text" id="adhar" name="patient[adhar]" placeholder="Enter Aadhar Number"
+                    class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'adhar')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Enter valid aadhar number</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" id="dob" name="patient[dob]" placeholder="Enter Date of Birth" class="form-control" required />
+                <div class="invalid-feedback">Enter valid date of Birth</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <div class="d-flex">
+                    <input type="number" id="age" name="patient[age]" placeholder="Enter Age" class="form-control"required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'age')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Enter valid Age</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <div class="d-flex">
+                    <input type="text" id="gender" name="patient[gender]" placeholder="Enter Gender" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'gender')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="d-flex">
+                    <input type="text" id="phone" name="patient[phone]" placeholder="Enter Phone Number" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'phone')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Enter valid phone number</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <div class="d-flex">
+                    <input type="email" id="email" name="patient[email]" placeholder="Enter Email Address" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'email')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Enter valid email address</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <div class="d-flex">
+                    <input type="text" id="address" name="patient[address]" placeholder="Enter Address" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'address')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Emergency Contact Information</h4>
+            <br />
+            <div class="mb-3">
+                <label for="emName" class="form-label">Emergency Contact Name</label>
+                <div class="d-flex">
+                    <input type="text" id="emName" name="patient[emName]" placeholder="Enter Emergency Contact Name" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'emName')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="emRel" class="form-label">Emergency Contact Relation</label>
+                <div class="d-flex">
+                    <input type="text" id="emRel" name="patient[emRel]" placeholder="Enter Emergency Contact Relation" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'emRel')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="emCall" class="form-label">Emergency Contact Number</label>
+                <div class="d-flex">
+                    <input type="text" id="emCall" name="patient[emCall]" placeholder="Enter Emergency Contact Number" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'emCall')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Enter valid Phone number</div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Medical Information</h4>
+            <br />
+            <div class="mb-3">
+                <label class="form-label">
+                    <input type="checkbox" name="patient.isMarried" value="true" />
+                    Married
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <label for="bloodGr" class="form-label">Blood Group</label>
+                <div class="d-flex">
+                    <input type="text" id="bloodGr" name="patient[bloodGr]" placeholder="Enter Blood Group" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'bloodGr')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Enter valid Blood Group</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="occup" class="form-label">Occupation</label>
+                <div class="d-flex">
+                    <input type="text" id="occup" name="patient[occup]" placeholder="Enter Occupation" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'occup')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="nation" class="form-label">Nationality</label>
+                <div class="d-flex">
+                    <input type="text" id="nation" name="patient[nation]" placeholder="Enter Nationality" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'nation')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="lang" class="form-label">Languages Known</label>
+                <div class="d-flex">
+                    <input type="text" id="lang" name="patient[lang]" placeholder="Enter Languages Known" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'lang')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="famMedHis" class="form-label">Family Medical History</label>
+                <div class="d-flex">
+                    <input type="text" id="famMedHis" name="patient[famMedHis]" placeholder="Enter Family Medical History" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'famMedHis')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="allergy" class="form-label">Allergies (if any)</label>
+                <div class="d-flex">
+                    <input type="text" id="allergy" name="patient[allergy]" placeholder="Enter Allergies (if any)" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'allergy')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="allergyNote" class="form-label">Allergy Notes</label>
+                <div class="d-flex">
+                    <input type="text" id="allergyNote" name="patient[allergyNote]" placeholder="Enter Allergy Notes" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'allergyNote')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="longDisease" class="form-label">Chronic Diseases</label>
+                <div class="d-flex">
+                    <input type="text" id="longDisease" name="patient[longDisease]" placeholder="Enter Chronic Diseases" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'longDisease')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Surgery Information</h4>
+            <br />
+            <div class="mb-3">
+                <label for="surgeryTyp" class="form-label">Type of Surgery</label>
+                <div class="d-flex">
+                    <input type="text" id="surgeryTyp" name="patient[surgeryTyp]" placeholder="Type of Surgery" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'surgeryTyp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="surgeryDate" class="form-label">Date of Surgery</label>
+                <input type="date" id="surgeryDate" name="patient[surgeryDate]" placeholder="Date of Surgery" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="surgeon" class="form-label">Surgeon Name</label>
+                <div class="d-flex">
+                    <input type="text" id="surgeon" name="patient[surgeon]" placeholder="Enter Surgeon Name" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'surgeon')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="surgeryNote" class="form-label">Surgery Notes</label>
+                <div class="d-flex">
+                    <input type="text" id="surgeryNote" name="patient[surgeryNote]" placeholder="Enter Surgery Notes"class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'surgeryNote')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Appointment Information</h4>
+            <br />
+            <div class="mb-3">
+                <label for="reasonApp" class="form-label">Reason for Appointment</label>
+                <div class="d-flex">
+                    <input type="text" id="reasonApp" name="patient[reasonApp]" placeholder="Reason for Appointment" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'reasonApp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="durationApp" class="form-label">Appointment Duration</label>
+                <div class="d-flex">
+                    <input type="text" id="durationApp" name="patient[durationApp]" placeholder="Appointment Duration" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'durationApp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="dateApp" class="form-label">Appointment Date</label>
+                <input type="date" id="dateApp" name="patient[dateApp]" placeholder="Appointment Date" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="doctorApp" class="form-label">Doctor's Name</label>
+                <div class="d-flex">
+                    <input type="text" id="doctorApp" name="patient[doctorApp]" placeholder="Doctor's Name" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'doctorApp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="noteApp" class="form-label">Appointment Notes</label>
+                <div class="d-flex">
+                    <input type="text" id="noteApp" name="patient[noteApp]" placeholder="Enter Appointment Notes" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'noteApp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Vaccine Information</h4>
+            <br />
+            <div class="mb-3">
+                <label for="vaccineTyp" class="form-label">Vaccine Type</label>
+                <div class="d-flex">
+                    <input type="text" id="vaccineTyp" name="patient[vaccineTyp]" placeholder="Vaccine Type" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'vaccineTyp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="vaccineDate" class="form-label">Vaccine Date</label>
+                <input type="date" id="vaccineDate" name="patient[vaccineDate]" placeholder="Vaccine Date" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="vaccineDoses" class="form-label">Number of Doses</label>
+                <div class="d-flex">
+                    <input type="number" id="vaccineDoses" name="patient[vaccineDoses]" placeholder="Number of Doses" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'vaccineDoses')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="vaccineCenter" class="form-label">Vaccination Center</label>
+                <div class="d-flex">
+                    <input type="text" id="vaccineCenter" name="patient[vaccineCenter]" placeholder="Vaccination Center" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'vaccineCenter')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Current Medications</h4>
+            <br />
+            <div class="mb-3">
+                <label for="medicineUsing" class="form-label">Current Medication</label>
+                <div class="d-flex">
+                    <input type="text" id="medicineUsing" name="patient[medicineUsing]" placeholder="Current Medication" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'medicineUsing')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="medicineDose" class="form-label">Dose</label>
+                <div class="d-flex">
+                    <input type="text" id="medicineDose" name="patient[medicineDose]" placeholder="Dose" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'medicineDose')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="medicineDays" class="form-label">Number of Days</label>
+                <div class="d-flex">
+                    <input type="number" id="medicineDays" name="patient[medicineDays]" placeholder="Number of Days" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'medicineDays')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="medicineNote" class="form-label">Medication Notes</label>
+                <div class="d-flex">
+                    <input type="text" id="medicineNote" name="patient[medicineNote]" placeholder="Enter Medication Notes" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'medicineNote')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <h4 style="color: red;">Exercise, Sleep, and Diet</h4>
+            <br />
+            <div class="mb-3">
+                <label for="exercise" class="form-label">Exercise Routine</label>
+                <div class="d-flex">
+                    <input type="text" id="exercise" name="patient[exercise]" placeholder="Exercise Routine" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'exercise')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="sleep" class="form-label">Sleep Pattern</label>
+                <div class="d-flex">
+                    <input type="text" id="sleep" name="patient[sleep]" placeholder="Sleep Pattern" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'sleep')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="diet" class="form-label">Diet</label>
+                <div class="d-flex">
+                    <input type="text" id="diet" name="patient[diet]" placeholder="Diet" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'diet')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Past Medical History</h4>
+            <br />
+            <div class="mb-3">
+                <label for="pastMedUsing" class="form-label">Past Medications</label>
+                <div class="d-flex">
+                    <input type="text" id="pastMedUsing" name="patient[pastMedUsing]" placeholder="Past Medications" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'pastMedUsing')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="pastMedReason" class="form-label">Reason for Past Medication</label>
+                <div class="d-flex">
+                    <input type="text" id="pastMedReason" name="patient[pastMedReason]"placeholder="Reason for Past Medication" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'pastMedReason')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="pastMedDose" class="form-label">Dose</label>
+                <div class="d-flex">
+                    <input type="text" id="pastMedDose" name="patient[pastMedDose]" placeholder="Dose" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'pastMedDose')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="pastMedDays" class="form-label">Number of Days</label>
+                <div class="d-flex">
+                    <input type="number" id="pastMedDays" name="patient[pastMedDays]" placeholder="Number of Days" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'pastMedDays')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="pastMedNote" class="form-label">Past Medication Notes</label>
+                <div class="d-flex">
+                    <input type="text" id="pastMedNote" name="patient[pastMedNote]" placeholder="Enter Past Medication Notes" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'pastMedNote')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Health Metrics</h4>
+            <br />
+            <div class="mb-3">
+                <label for="bmi" class="form-label">BMI</label>
+                <div class="d-flex">
+                    <input type="text" id="bmi" name="patient[bmi]" placeholder="BMI" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'bmi')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="bp" class="form-label">Blood Pressure</label>
+                <div class="d-flex">
+                    <input type="text" id="bp" name="patient[bp]" placeholder="Blood Pressure" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'bp')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="heartRate" class="form-label">Heart Rate</label>
+                <div class="d-flex">
+                    <input type="text" id="heartRate" name="patient[heartRate]" placeholder="Heart Rate" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'heartRate')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="weight" class="form-label">Weight (kg)</label>
+                <div class="d-flex">
+                    <input type="number" id="weight" name="patient[weight]" placeholder="Weight (kg)" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'weight')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="height" class="form-label">Height (cm)</label>
+                <div class="d-flex">
+                    <input type="number" id="height" name="patient[height]" placeholder="Height (cm)" class="form-control" required />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'height')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Insurance Information</h4>
+            <br />
+            <div class="mb-3">
+                <label for="insuranceName" class="form-label">Insurance Name</label>
+                <div class="d-flex">
+                    <input type="text" id="insuranceName" name="patient[insuranceName]" placeholder="Insurance Name" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'insuranceName')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="insuranceSource" class="form-label">Insurance Source</label>
+                <div class="d-flex">
+                    <input type="text" id="insuranceSource" name="patient[insuranceSource]" placeholder="Insurance Source" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'insuranceSource')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="insuranceId" class="form-label">Insurance ID</label>
+                <div class="d-flex">
+                    <input type="text" id="insuranceId" name="patient[insuranceId]" placeholder="Insurance ID"class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'insuranceId')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Lab Results</h4>
+            <br />
+            <div class="mb-3">
+                <label for="labResultImg1" class="form-label">Lab Result Notes 1</label>
+                <div class="d-flex">
+                    <input type="text" id="labResultImg1" name="patient[labResultImg1]" placeholder="Lab Result Summary 1" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'labResultImg1')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="labResultImg2" class="form-label">Lab Result Notes 2</label>
+                <div class="d-flex">
+                    <input type="text" id="labResultImg2" name="patient[labResultImg2]" placeholder="Lab Result Summary 2" class="form-control" />
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'labResultImg2')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <h4 style="color: red;">Additional Notes</h4>
+            <br />
+            <div class="mb-3">
+                <label for="note" class="form-label">Additional Notes</label>
+                <div class="d-flex">
+                    <textarea id="note" name="patient[note]" placeholder="Enter Additional Notes"class="form-control"></textarea>
+                    <button type="button" class="ms-2 btn btn-light microphone-btn" onclick="startVoiceInput('patient', 'note')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-dark">Add Patient</button>
+        </form>
+    </div>
+</div>
+<br>

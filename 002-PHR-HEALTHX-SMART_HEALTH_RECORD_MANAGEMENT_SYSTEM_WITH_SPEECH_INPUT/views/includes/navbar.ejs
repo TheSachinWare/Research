@@ -1,0 +1,127 @@
+<!-- Navbar -->
+<nav class="navbar navbar-light border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/"><span class="material-symbols-outlined">healing</span></a>
+        <h3 class="text-red" style="color: red;">HealthX</h3>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Collapsible Sidebar -->
+<div class="collapse" id="navbarToggleExternalContent" data-bs-theme="light">
+    <div class="p-4">
+        <ul class="navbar-nav mt-3">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/"><i class="fas fa-home"></i>&nbsp; Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/generals"><i class="fas fa-plus-circle"></i>&nbsp; First AID Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/doctors"><i class="fas fa-user-md"></i>&nbsp; Consult Doctors</a>
+            </li>
+            <li class="nav-item"></li>
+                <a class="nav-link text-dark" href="/patients"><i class="fas fa-users"></i>&nbsp; See Patients Accounts</a>
+            </li>
+            <hr>
+
+            <li class="nav-item dropdown mt-2">
+                <button class="dropdown-toggle toggle-btn" type="button" id="addAccountDropdown" data-bs-toggle="dropdown" style="background-color: white;">
+                    <i class="fas fa-user-plus"></i>&nbsp; Add New Account
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="addAccountDropdown">
+                    <li class="nav-item"><a class="dropdown-item" href="/doctors/new1">As Doctor</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="/patients/new2">As Patient</a></li>
+                </ul>
+            </li>
+
+            <% if (!currUser) { %>
+                <li class="nav-item dropdown mt-2">
+                    <button class="dropdown-toggle toggle-btn" type="button" id="signupDropdown" data-bs-toggle="dropdown" style="background-color: white;">
+                        <i class="fas fa-user-check"></i>&nbsp; SignUp
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="signupDropdown">
+                        <li class="nav-item"><a class="dropdown-item" href="/signupD">SignUp As Doctor</a></li>
+                        <li class="nav-item"><a class="dropdown-item" href="/signupP">SignUp As Patient</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown mt-2">
+                    <button class="dropdown-toggle toggle-btn" type="button" id="loginDropdown" data-bs-toggle="dropdown" style="background-color: white;">
+                        <i class="fas fa-sign-in-alt"></i>&nbsp; Login
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                        <li class="nav-item"><a class="dropdown-item" href="/loginD">Login As Doctor</a></li>
+                        <li class="nav-item"><a class="dropdown-item" href="/loginP">Login As Patient</a></li>
+                    </ul>
+                </li>
+            <% } %>
+
+            <% if (currUser) { %>
+                <li class="nav-item dropdown mt-2">
+                    <button class="dropdown-toggle toggle-btn" type="button" id="logoutDropdown" data-bs-toggle="dropdown" style="background-color: white;">
+                        <i class="fas fa-sign-out-alt"></i>&nbsp; LogOut
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="logoutDropdown">
+                        <li class="nav-item"><a class="dropdown-item" href="/logoutD">LogOut As Doctor</a></li>
+                        <li class="nav-item"><a class="dropdown-item" href="/logoutP">LogOut As Patient</a></li>
+                    </ul>
+                </li>
+            <% } %>
+        </ul>
+        <hr style="border: 2px solid black;" />
+    </div>
+</div>
+
+<!-- <style>
+/* Filters box shadow */
+#filters {
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.1); /* Light red shadow */
+}
+
+/* Button primary - Red */
+.btn-primary {
+    background-color: #ff4d4d; /* Red */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Form check input - Switch styling for red when checked */
+.form-check-input:checked {
+    background-color: #ff4d4d; /* Red */
+    border-color: #ff4d4d;
+}
+
+/* Form control focus border - Yellow */
+.form-control:focus {
+    border-color: #ffcc00; /* Yellow */
+    box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.25); /* Yellow focus shadow */
+}
+</style>
+
+
+<div id="filters" class="p-4 bg-light rounded shadow-sm">
+    <div class="filters">
+        <div class="d-flex align-items-center gap-3">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="border-radius: 25px; padding: 10px;  width: 56rem; ">
+            <a href="/search">
+                <button class="btn btn-primary d-flex align-items-center" type="submit"  
+                    style="border-radius: 25px; padding: 10px 16px; transition: background-color 0.3s; ">
+                    <i class="bi bi-search me-2"></i> Search
+                </button>
+            </a>
+            
+            <div class="ms-auto d-flex align-items-center justify-content-center py-2" style="border: 1px solid #000; border-radius: 20px; background-color: #fff; padding: 9px 30px;">
+                <label class="form-check-label me-3" for="flexSwitchCheckDefault" style="margin-bottom: 0;">Dark Mode</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

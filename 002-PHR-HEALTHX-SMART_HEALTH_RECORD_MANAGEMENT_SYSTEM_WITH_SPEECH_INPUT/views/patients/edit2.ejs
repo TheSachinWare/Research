@@ -1,0 +1,661 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            <h3>Edit Patient Information</h3>
+            <form method="post" action="/patients/<%= patient._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+                <h4>Basic Information</h4>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <div class="d-flex">
+                        <input type="text" id="name" name="patient[name]" class="form-control" value="<%= patient.name %>"
+                        required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'name')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    Original Patients Image : <br>
+                    <img src="<%=  patient.img.url %>" alt="originalImgUrl" style="height: 20rem;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Update Image: <br> <small>Upload Image in Landscape mode.</small>
+                    </label>
+                    <input type="file" id="image" name="patient[img]" class="form-control" >
+                    <div class="invalid-feedback">Update an image of yours.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="adhar" class="form-label">Aadhar Number:</label>
+                    <div class="d-flex">
+                        <input type="text" id="adhar" name="patient[adhar]" class="form-control" value="<%= patient.adhar %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'adhar')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Add 12-digits perfectly</div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of Birth:</label>
+                    <input type="date" id="dob" name="patient[dob]" class="form-control" value="<%= patient.dob %>"
+                        required>
+                    <div class="invalid-feedback">Enter valid date of Birth</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age:</label>
+                    <div class="d-flex">
+                        <input type="number" id="age" name="patient[age]" class="form-control" value="<%= patient.age %>"
+                        required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'age')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Enter valid age</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender:</label>
+                    <div class="d-flex">
+                        <input type="text" id="gender" name="patient[gender]" class="form-control"
+                        value="<%= patient.gender %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'gender')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone:</label>
+                    <div class="d-flex">
+                        <input type="text" id="phone" name="patient[phone]" class="form-control"
+                        value="<%= patient.phone %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'phone')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Enter valid phone number</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <div class="d-flex">
+                        <input type="email" id="email" name="patient[email]" class="form-control"
+                        value="<%= patient.email %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'email')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Enter valid email</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <div class="d-flex">
+                        <textarea id="address" name="patient[address]" class="form-control"
+                        required><%= patient.address %></textarea>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'email')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Emergency Contact</h4>
+
+                <div class="mb-3">
+                    <label for="emName" class="form-label">Emergency Contact Name:</label>
+                    <div class="d-flex">
+                        <input type="text" id="emName" name="patient[emName]" class="form-control"
+                        value="<%= patient.emName %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'emName')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="emRel" class="form-label">Relationship:</label>
+                    <div class="d-flex">
+                        <input type="text" id="emRel" name="patient[emRel]" class="form-control"
+                        value="<%= patient.emRel %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'emRel')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="emCall" class="form-label">Emergency Contact Phone:</label>
+                    <div class="d-flex">
+                        <input type="text" id="emCall" name="patient[emCall]" class="form-control"
+                        value="<%= patient.emCall %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'emCall')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Medical Information</h4>
+
+                <div class="mb-3">
+                    <label for="isMarried" class="form-label">Marital Status:</label>
+                    <select id="isMarried" name="patient[isMarried]" class="form-control" required>
+                        <option value="true" <% if (patient.isMarried) { %> selected <% } %>>Married</option>
+                        <option value="false" <% if (!patient.isMarried) { %> selected <% } %>>Unmarried</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="bloodGr" class="form-label">Blood Group:</label>
+                    <div class="d-flex">
+                        <input type="text" id="bloodGr" name="patient[bloodGr]" class="form-control"
+                        value="<%= patient.bloodGr %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'bloodGr')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Enter valid blood group</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="occup" class="form-label">Occupation:</label>
+                    <div class="d-flex">
+                        <input type="text" id="occup" name="patient[occup]" class="form-control"
+                        value="<%= patient.occup %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'occup')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nation" class="form-label">Nationality:</label>
+                    <div class="d-flex">
+                        <input type="text" id="nation" name="patient[nation]" class="form-control"
+                        value="<%= patient.nation %>" required>
+                    
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'nation')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="lang" class="form-label">Language:</label>
+                    <div class="d-flex">
+                        <input type="text" id="lang" name="patient[lang]" class="form-control" value="<%= patient.lang %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'lang')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="famMedHis" class="form-label">Family Medical History:</label>
+                    <div class="d-flex">
+                        <textarea id="famMedHis" name="patient[famMedHis]"
+                        class="form-control"><%= patient.famMedHis %></textarea>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'famMedHis')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="allergy" class="form-label">Allergy:</label>
+                    <div class="d-flex">
+                        <input type="text" id="allergy" name="patient[allergy]" class="form-control"
+                        value="<%= patient.allergy %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'allergy')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="allergyNote" class="form-label">Allergy Notes:</label>
+                    <div class="d-flex">
+                        <textarea id="allergyNote" name="patient[allergyNote]"
+                        class="form-control"><%= patient.allergyNote %></textarea>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'allergyNote')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="longDisease" class="form-label">Long-term Diseases:</label>
+                    <div class="d-flex">
+                        <textarea id="longDisease" name="patient[longDisease]"
+                        class="form-control"><%= patient.longDisease %></textarea>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'longDisease')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Surgery Information</h4>
+
+                <div class="mb-3">
+                    <label for="surgeryTyp" class="form-label">Type of Surgery:</label>
+                    <div class="d-flex">
+                        <input type="text" id="surgeryTyp" name="patient[surgeryTyp]" class="form-control"
+                        value="<%= patient.surgeryTyp %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'surgeryTyp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="surgeryDate" class="form-label">Date of Surgery:</label>
+                    <input type="date" id="surgeryDate" name="patient[surgeryDate]" class="form-control"
+                        value="<%= patient.surgeryDate %>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="surgeon" class="form-label">Surgeon:</label>
+                    <div class="d-flex">
+                        <input type="text" id="surgeon" name="patient[surgeon]" class="form-control"
+                        value="<%= patient.surgeon %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'surgeon')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="surgeryNote" class="form-label">Surgery Notes:</label>
+                    <div class="d-flex">
+                        <textarea id="surgeryNote" name="patient[surgeryNote]"
+                        class="form-control"><%= patient.surgeryNote %></textarea>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'surgeryNote')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Appointment Details</h4>
+
+                <div class="mb-3">
+                    <label for="reasonApp" class="form-label">Reason for Appointment:</label>
+                    <div class="d-flex">
+                        <input type="text" id="reasonApp" name="patient[reasonApp]" class="form-control"
+                        value="<%= patient.reasonApp %>" required>
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'reasonApp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="durationApp" class="form-label">Duration of Appointment:</label>
+                    <div class="d-flex">
+                        <input type="text" id="durationApp" name="patient[durationApp]" class="form-control"
+                        value="<%= patient.durationApp %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'durationApp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dateApp" class="form-label">Date of Appointment:</label>
+                    <input type="date" id="dateApp" name="patient[dateApp]" class="form-control"
+                        value="<%= patient.dateApp %>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="doctorApp" class="form-label">Doctor for Appointment:</label>
+                    <div class="d-flex">
+                        <input type="text" id="doctorApp" name="patient[doctorApp]" class="form-control"
+                        value="<%= patient.doctorApp %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'doctorApp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="noteApp" class="form-label">Appointment Notes:</label>
+                    <div class="d-flex">
+                        <textarea id="noteApp" name="patient[noteApp]"
+                        class="form-control"><%= patient.noteApp %></textarea>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'noteApp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Vaccine Information</h4>
+                <div class="mb-3">
+                    <label for="vaccineTyp" class="form-label">Type of Vaccine:</label>
+                    <div class="d-flex">
+                        <input type="text" id="vaccineTyp" name="patient[vaccineTyp]" class="form-control"
+                        value="<%= patient.vaccineTyp %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'vaccineTyp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="vaccineDate" class="form-label">Date of Vaccination:</label>
+                    <input type="date" id="vaccineDate" name="patient[vaccineDate]" class="form-control"
+                        value="<%= patient.vaccineDate %>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="vaccineDoses" class="form-label">Number of Doses:</label>
+                    <div class="d-flex">
+                        <input type="number" id="vaccineDoses" name="patient[vaccineDoses]" class="form-control"
+                        value="<%= patient.vaccineDoses %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'vaccineDoses')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="vaccineCenter" class="form-label">Vaccination Center:</label>
+                    <div class="d-flex">
+                        <input type="text" id="vaccineCenter" name="patient[vaccineCenter]" class="form-control"
+                        value="<%= patient.vaccineCenter %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'vaccineCenter')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Current Medications</h4>
+                <div class="mb-3">
+                    <label for="medicineUsing" class="form-label">Medicine Name:</label>
+                    <div class="d-flex">
+                        <input type="text" id="medicineUsing" name="patient[medicineUsing]" class="form-control"
+                        value="<%= patient.medicineUsing %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'medicineUsing')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="medicineDose" class="form-label">Medicine Dosage:</label>
+                    <div class="d-flex">
+                        <input type="text" id="medicineDose" name="patient[medicineDose]" class="form-control"
+                        value="<%= patient.medicineDose %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'medicineDose')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="medicineDays" class="form-label">Days of Medication:</label>
+                    <div class="d-flex">
+                        <input type="text" id="medicineDays" name="patient[medicineDays]" class="form-control"
+                        value="<%= patient.medicineDays %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'medicineDays')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="medicineNote" class="form-label">Medication Notes:</label>
+                    <div class="d-flex">
+                        <textarea id="medicineNote" name="patient[medicineNote]"
+                        class="form-control"><%= patient.medicineNote %></textarea>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'medicineNote')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Exercise, Sleep, and Diet</h4>
+                <div class="mb-3">
+                    <label for="exercise" class="form-label">Exercise:</label>
+                    <div class="d-flex">
+                        <input type="text" id="exercise" name="patient[exercise]" class="form-control"
+                        value="<%= patient.exercise %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'exercise')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="sleep" class="form-label">Sleep:</label>
+                    <div class="d-flex">
+                        <input type="text" id="sleep" name="patient[sleep]" class="form-control"
+                        value="<%= patient.sleep %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'sleep')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="diet" class="form-label">Diet:</label>
+                    <div class="d-flex">
+                        <input type="text" id="diet" name="patient[diet]" class="form-control" value="<%= patient.diet %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'diet')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Past Medical History</h4>
+                <div class="mb-3">
+                    <label for="pastMedUsing" class="form-label">Past Medications:</label>
+                    <div class="d-flex">
+                        <input type="text" id="pastMedUsing" name="patient[pastMedUsing]" class="form-control"
+                        value="<%= patient.pastMedUsing %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'pastMedUsing')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pastMedReason" class="form-label">Reason for Medication:</label>
+                    <div class="d-flex">
+                        <input type="text" id="pastMedReason" name="patient[pastMedReason]" class="form-control"
+                        value="<%= patient.pastMedReason %>">
+                
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'pastMedReason')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pastMedDose" class="form-label">Medication Dosage:</label>
+                    <div class="d-flex">
+                        <input type="text" id="pastMedDose" name="patient[pastMedDose]" class="form-control"
+                        value="<%= patient.pastMedDose %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'pastMedDose')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pastMedDays" class="form-label">Days of Medication:</label>
+                    <div class="d-flex">
+                        <input type="text" id="pastMedDays" name="patient[pastMedDays]" class="form-control"
+                        value="<%= patient.pastMedDays %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'pastMedDays')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pastMedNote" class="form-label">Medication Notes:</label>
+                    <div class="d-flex">
+                        <textarea id="pastMedNote" name="patient[pastMedNote]"
+                        class="form-control"><%= patient.pastMedNote %>
+                        </textarea>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'pastMedNote')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <h4>Health Metrics</h4>
+                <div class="mb-3">
+                    <label for="bmi" class="form-label">BMI:</label>
+                    <div class="d-flex">
+                        <input type="text" id="bmi" name="patient[bmi]" class="form-control" value="<%= patient.bmi %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'bmi')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="bp" class="form-label">Blood Pressure:</label>
+                    <div class="d-flex">
+                        <input type="text" id="bp" name="patient[bp]" class="form-control" value="<%= patient.bp %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'bp')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="heartRate" class="form-label">Heart Rate:</label>
+                    <div class="d-flex">
+                        <input type="text" id="heartRate" name="patient[heartRate]" class="form-control"
+                        value="<%= patient.heartRate %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'heartRate')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="weight" class="form-label">Weight:</label>
+                    <div class="d-flex">
+                        <input type="text" id="weight" name="patient[weight]" class="form-control"
+                        value="<%= patient.weight %>">
+
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'weight')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="height" class="form-label">Height:</label>
+                    <div class="d-flex">
+                        <input type="text" id="height" name="patient[height]" class="form-control"
+                        value="<%= patient.height %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'height')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Insurance Information</h4>
+                <div class="mb-3">
+                    <label for="insuranceName" class="form-label">Insurance Name:</label>
+                    <div class="d-flex">
+                        <input type="text" id="insuranceName" name="patient[insuranceName]" class="form-control"
+                        value="<%= patient.insuranceName %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'insuranceName')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="insuranceSource" class="form-label">Insurance Source:</label>
+                    <div class="d-flex">
+                        <input type="text" id="insuranceSource" name="patient[insuranceSource]" class="form-control"
+                        value="<%= patient.insuranceSource %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'insuranceSource')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="insuranceId" class="form-label">Insurance ID:</label>
+                    <div class="d-flex">
+                        <input type="text" id="insuranceId" name="patient[insuranceId]" class="form-control"
+                        value="<%= patient.insuranceId %>">
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'insuranceId')">
+                                <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h4>Lab Results</h4>
+                <!-- Add fields or upload options for lab results here -->
+                <div class="mb-3">
+                    <label for="note" class="form-label">Lab Result Notes 1:</label>
+                    <div class="d-flex">
+                        <textarea id="note" name="patient[labResultImg1]" class="form-control"><%= patient.labResultImg1 %></textarea>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'labResultImg1')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="note" class="form-label">Lab Result Notes 2:</label>
+                    <div class="d-flex">
+                        <textarea id="note" name="patient[labResultImg2]" class="form-control"><%= patient.labResultImg2 %></textarea>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'labResultImg2')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div><br>
+
+                <h4>Additional Notes</h4>
+                <div class="mb-3">
+                    <label for="note" class="form-label">Notes:</label>
+                    <div class="d-flex">
+                        <textarea id="note" name="patient[note]" class="form-control"><%= patient.note %></textarea>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('patient', 'note')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div><br>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form><br>
+        </div>
+    </div>

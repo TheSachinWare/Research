@@ -1,0 +1,107 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+    body {
+        background-color: #f7f9fc; /* Soft background */
+        font-family: 'Arial', sans-serif; /* Keep original font */
+    }
+
+    .form-container {
+        background: white;
+        padding: 40px;
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden; /* Clip overflow for styling */
+    }
+
+    h3 {
+        color: #2c3e50; /* Darker color for the heading */
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #34495e; /* Darker label color */
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        padding: 15px;
+    }
+
+    .form-control:focus {
+        border-color: #e74c3c; /* Reddish focus border */
+        box-shadow: 0 0 5px rgba(231, 76, 60, 0.25);
+    }
+
+    .btn-success {
+        background-color: #2ecc71; /* Green button */
+        border: none;
+        border-radius: 5px; /* Smaller rounded button */
+        color: white;
+        transition: background-color 0.3s;
+        padding: 8px 16px; /* Smaller padding */
+        width: auto; /* Auto width for small button */
+    }
+
+    .btn-success:hover {
+        background-color: #27ae60; /* Darker green on hover */
+    }
+
+    /* Optional Decorative Elements */
+    .decorative-ellipse {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: rgba(231, 76, 60, 0.1); /* Soft reddish */
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .decorative-ellipse-small {
+        position: absolute;
+        bottom: -50px;
+        left: -50px;
+        width: 100px;
+        height: 100px;
+        background: rgba(192, 57, 43, 0.1); /* Softer reddish */
+        border-radius: 50%;
+        z-index: 0;
+    }
+</style>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2 form-container">
+        <div class="decorative-ellipse"></div>
+        <div class="decorative-ellipse-small"></div>
+        <br>
+        <h3 style="color: black;">Signup for Patients on HealthX</h3>
+        <br>
+        <form method="post" action="/signupP" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="username" required>
+                <div class="valid-feedback">Looks good</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Signup</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+<br>

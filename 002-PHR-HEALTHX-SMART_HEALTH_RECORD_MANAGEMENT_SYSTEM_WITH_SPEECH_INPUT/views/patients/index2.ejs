@@ -1,0 +1,115 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    /* Filters box shadow */
+    #filters {
+        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.1); /* Light red shadow */
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+
+    /* Button primary - Red */
+    .btn-primary {
+        background-color: #ff4d4d; /* Red */
+        border: none;
+        border-radius: 25px;
+        padding: 10px 16px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+        background-color: #cc0000; /* Darker red on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    /* Form control focus border - Yellow */
+    .form-control {
+        border-radius: 25px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+        border-color: #ffcc00; /* Yellow */
+        box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.25); /* Yellow focus shadow */
+    }
+
+    /* Card styles */
+    .card {
+        border: 1px solid #ddd; /* Light gray border */
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background-color: #fff; /* White background for contrast */
+        margin-bottom: 1.5rem; /* Space between cards */
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+        object-fit: cover; /* Ensures images cover the area without distortion */
+        height: 20rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #333; /* Darker text for better readability */
+    }
+
+    .card-img-overlay {
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better text contrast */
+        color: #fff; /* White text color */
+    }
+
+    .card-text {
+        margin: 0.5rem 0; /* Spacing for card text */
+    }
+
+    h5 {
+        color: #ff4d4d; /* Primary color for headings */
+    }
+</style>
+
+<!-- Main content: List of patients -->
+<div class="container">
+    <h3 style="margin-top: 2rem; text-align: center;">Patients for Consultation</h3>
+    <form class="d-flex align-items-center gap-3 justify-content-center" action="/searchP" method="GET" style="margin: 2rem 0;">
+        <input class="form-control" type="search" name="searchQuery" placeholder="Search Patients" aria-label="Search">
+        <button class="btn btn-primary d-flex align-items-center" type="submit">
+            <i class="bi bi-search me-2"></i> Search
+        </button>
+    </form>
+    
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+        <% if (Array.isArray(allPatients) && allPatients.length > 0) { %>
+            <% for (let patient of allPatients) { %>
+                <a href="/patients/<%= patient._id %>" class="listing-link text-decoration-none">
+                    <div class="card col">
+                        <img src="<%= patient.img.url %>" class="card-img-top" alt="patient_image">
+                        
+                        <!-- Image Overlays -->
+                        <div class="card-img-overlay">
+                            <p class="card-text">Gender: <%= patient.gender %></p>
+                            <p class="card-text">Blood Group: <%= patient.bloodGr %></p>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= patient.name %></h5>
+                            <p class="card-text">Age: <%= patient.age %></p>
+                            <p class="card-text">Phone: <%= patient.phone %></p>
+                            <p class="card-text">Email: <%= patient.email %></p>
+                        </div>
+                    </div>
+                </a>
+            <% } %>
+        <% } else { %>
+            <h5 class="text-center">No patients found for your search query.</h5>
+        <% } %>
+    </div>
+</div>

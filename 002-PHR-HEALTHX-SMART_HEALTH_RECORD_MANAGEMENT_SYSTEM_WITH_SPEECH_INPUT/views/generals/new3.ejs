@@ -1,0 +1,98 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+    body {
+        background-color: #f7f9fc; /* Soft background */
+        font-family: 'Arial', sans-serif; /* Keep original font */
+        overflow: auto; /* Allow scrolling */
+        position: relative; /* Enable positioning of background shapes */
+    }
+
+
+    .form-container {
+        background: white;
+        padding: 40px;
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden; /* Clip overflow for styling */
+        opacity: 0.95; /* Slight transparency for a softer effect */
+        z-index: 1; /* Ensure it appears above the shapes */
+        margin: 50px auto; /* Center the form container */
+    }
+
+    h3 {
+        color: red; /* Red color for the heading */
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    h4 {
+        color: #34495e; /* Darker color for subheading */
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        padding: 15px;
+    }
+
+    .form-control:focus {
+        border-color: #3498db; /* Blue focus border */
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.25);
+    }
+
+    .btn-dark {
+        background-color: #3498db;
+        border: none;
+        border-radius: 10px; /* Rounded button */
+        color: white;
+        transition: background-color 0.3s;
+        padding: 10px 20px;
+    }
+
+    .btn-dark:hover {
+        background-color: #2980b9;
+    }
+
+    .microphone-btn {
+        background-color: #ffebee; /* Light red background */
+        border-radius: 10px; /* Rounded button without border */
+        padding: 10px;
+        transition: background-color 0.3s;
+        border: none; /* No border */
+    }
+
+    .microphone-btn:hover {
+        background-color: #ef5350; /* Darker red on hover */
+    }
+</style>
+
+<div class="background-shape shape1"></div>
+<div class="background-shape shape2"></div>
+<div class="background-shape shape3"></div>
+<div class="background-shape shape4"></div>
+
+<br><br>
+<div class="row">
+    <div class="col-8 offset-2 form-container">
+        
+        <h3>Add First Aid Information for Emergency Medical Conditions</h3>
+        <form method="post" action="/generals" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <h4>General First Aid Information</h4>
+                <textarea name="general[info]" placeholder="Enter first aid information" class="form-control" rows="5" required></textarea>
+                <div class="invalid-feedback">Add Correct Information</div>
+            </div>
+
+            <button type="button" class="ms-2 microphone-btn" onclick="startVoiceInput('general', 'info')">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <br><br>
+            <button type="submit" class="btn btn-dark">Add First Aid Information</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+<br>

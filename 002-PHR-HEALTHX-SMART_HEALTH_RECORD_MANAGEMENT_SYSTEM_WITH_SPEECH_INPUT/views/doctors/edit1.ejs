@@ -1,0 +1,110 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Edit Your Doctor's Account</h3><br>
+        <form method="post" action="/doctors/<%= doctor._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <div class="d-flex">
+                    <input type="text" id="name" name="doctor[name]" class="form-control" value="<%= doctor.name %>" required>
+                    <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'name')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="valid-feedback">Don't forget to add 'Dr.'.</div>
+            </div>
+
+            <div class="mb-3">
+                Orginal Doctor's Image: <br>
+                <img src="<%= doctor.image.url %>" alt="originalImageUrl" style="height: 20rem;">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload New Image of Yours : <br> <small>Upload Image in Landscape mode.</small>
+                </label>
+                <input type="file" id="image" name="doctor[image]" class="form-control">
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="degree" class="form-label">Degree:</label>
+                    <div class="d-flex">
+                        <input type="text" id="degree" name="doctor[degree]" class="form-control" value="<%= doctor.degree %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'degree')">
+                            <i class="fas fa-microphone"></i> 
+                        </button>
+                    </div>
+                </div>
+        
+                <div class="mb-3 col-md-8">
+                    <label for="specialization" class="form-label">Specialization:</label>
+                    <div class="d-flex">
+                        <input type="text" id="specialization" name="doctor[specialization]" class="form-control" value="<%= doctor.specialization %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'specialization')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="valid-feedback">Great</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="clinicName" class="form-label">Clinic Name:</label>
+                <div class="d-flex">
+                    <input type="text" id="clinicName" name="doctor[clinicName]" class="form-control" value="<%= doctor.clinicName %>">
+                    <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'clinicName')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="clinicCall" class="form-label">Clinic Phone:</label>
+                <div class="d-flex">
+                    <input type="text" id="clinicCall" name="doctor[clinicCall]" class="form-control" value="<%= doctor.clinicCall %>" required>
+                    <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'clinicCall')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="invalid-feedback">Add phone number with calling codes.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="clinicAdd" class="form-label">Clinic Address:</label>
+                <div class="d-flex">
+                    <input type="text" id="clinicAdd" name="doctor[clinicAdd]" class="form-control" value="<%= doctor.clinicAdd %>">
+                    <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'clinicAdd')">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="yearsOfEx" class="form-label">Years of Experience:</label>
+                    <div class="d-flex">
+                        <input type="number" id="yearsOfEx" name="doctor[yearsOfEx]" class="form-control" value="<%= doctor.yearsOfEx %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'yearsOfEx')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="valid-feedback">Great</div>
+                </div>
+        
+                <div class="mb-3 col-md-8">
+                    <label for="consultingFees" class="form-label">Consulting Fees:</label>
+                    <div class="d-flex">
+                        <input type="number" id="consultingFees" name="doctor[consultingFees]" class="form-control" value="<%= doctor.consultingFees %>" required>
+                        <button type="button" class="ms-2 btn btn-light" onclick="startVoiceInput('doctor', 'consultingFees')">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Add the right price.</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark mt-3">Save Changes</button><br><br>
+        </form>
+    </div>
+</div>
